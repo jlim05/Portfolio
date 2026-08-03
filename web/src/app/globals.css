@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@theme {
+  /* Near-black base with a hint of blue so it doesn't read as flat #000. */
+  --color-ink-950: #08090c;
+  --color-ink-900: #0c0e13;
+  --color-ink-800: #14171f;
+  --color-ink-700: #1e222c;
+  --color-ink-600: #2a2f3b;
+
+  --color-mist-100: #e9ecf3;
+  --color-mist-300: #b3bacb;
+  --color-mist-500: #7b8399;
+
+  /* The single accent. Change this one value to re-tint the whole site. */
+  --color-accent: #8ba9ff;
+  --color-accent-dim: #5f7ee0;
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  /* Native fallback; Lenis takes over when it is active and motion is allowed. */
+  scroll-behavior: smooth;
+  background-color: var(--color-ink-950);
+}
+
+body {
+  background-color: var(--color-ink-950);
+  color: var(--color-mist-100);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Lenis needs the native smooth-scroll off while it drives the scroll itself. */
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background-color: color-mix(in oklab, var(--color-accent) 30%, transparent);
+  color: var(--color-mist-100);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@keyframes chevron-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(7px);
+    opacity: 1;
+  }
+}
+
+.animate-chevron {
+  animation: chevron-bounce 2.2s ease-in-out infinite;
+}
+
+/* Static CSS starfield used by the mobile / reduced-motion hero fallback. */
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.animate-twinkle {
+  animation: twinkle 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-chevron,
+  .animate-twinkle {
+    animation: none !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
