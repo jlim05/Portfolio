@@ -31,52 +31,20 @@ export type Quote = {
 };
 
 /**
- * Floating quotes orbiting the hero name — on doing the thing, and on doing it
- * consistently, to echo the personal statement below.
+ * A single line under the name, unattributed — it is yours, not a quotation.
+ * Kept as an array so FloatingQuotes and the static hero fallback need no
+ * change; add more entries here and they will lay out alongside it.
  *
- * Heads up on the Twain line: it is near-universally credited to him, but there
- * is no record of him writing or saying it. Its earliest known appearance is
- * H. Jackson Brown Jr.'s 1991 book "P.S. I Love You", where he credits his
- * mother, Sarah Frances Brown. Keep it as-is if you like the association, or
- * swap the author to "H. Jackson Brown Jr.'s mother" — or drop the attribution.
+ * The width is set wide enough that the line never wraps at any viewport —
+ * FloatingQuotes scales both the width and the position by `spread` on
+ * narrower canvases.
  */
 export const quotes: Quote[] = [
   {
-    text:
-      "In twenty years, you will be more disappointed by the things you didn't do than by the ones you did.",
-    author: "Mark Twain",
-    position: [-5.2, 2.2, -3],
-    drift: 0.9,
-    width: 3.6,
-  },
-  {
-    text:
-      "Success doesn't come from what you do occasionally, but from what you do consistently.",
-    author: "Marie Forleo",
-    position: [5.3, 1.6, -4],
-    drift: 1.15,
-    width: 3.1,
-  },
-  {
-    text: "Success is the sum of small efforts, repeated day in and day out.",
-    author: "Robert Collier",
-    position: [-4.8, -2.2, -5.5],
+    text: "Show up, do the work, get a little better every day.",
+    position: [0, -1.6, -1],
     drift: 0.7,
-    width: 2.9,
-  },
-  {
-    text: "Energy and persistence conquer all things.",
-    author: "Benjamin Franklin",
-    position: [4.7, -2.5, -1.8],
-    drift: 1.3,
-    width: 2.5,
-  },
-  {
-    text: "Fall seven times, stand up eight.",
-    author: "Japanese proverb",
-    position: [0.2, 3.5, -6.5],
-    drift: 0.55,
-    width: 2.4,
+    width: 8,
   },
 ];
 
@@ -85,8 +53,8 @@ export const personalStatement = {
   eyebrow: "About",
   heading: "A short version of the long story.",
   paragraphs: [
-    "I'm a third-year Computer Science student who genuinely enjoys figuring out how things work and finding ways to keep improving. I stay active through sports and regular gym training, and I've found that the discipline it takes to show up consistently translates directly into how I approach problem-solving and code.",
-    "I enjoy stepping outside my comfort zone, whether that means taking on a new project, learning a new skill, or picking up a new hobby. I'm not chasing perfection. I'm focused on consistent, incremental progress, and that's the mindset I bring to my work: show up, put in the effort, and get a little better every day.",
+    "I'm a final-year Computer Science student who notices what isn't quite working yet, and enjoys the process of making it better. I stay active through sports and regular gym training, and the discipline of showing up consistently is the same mindset I bring to refining code and projects.",
+    "I enjoy stepping outside my comfort zone, whether that means taking on a new project, learning a new skill, or picking up a new hobby. I'm not chasing perfect, I'm chasing better than yesterday, and that shows up in how I approach both training and building.",
   ],
 };
 
@@ -108,7 +76,7 @@ export type Project = {
  * clickable either. Fill these in and the buttons appear:
  *
  *   CalorieDuo               → live demo + repo
- *   WDCC UOAVC Web App       → repo (and a live URL if it is public)
+ *   WDCC UOAVC Web App       → repo (live URL is set)
  *   Mendo Construction       → live demo + repo
  *   Recipe Web App           → repo
  *
@@ -116,6 +84,13 @@ export type Project = {
  * I do not have.
  */
 export const projects: Project[] = [
+  {
+    title: "3D Interactive Heart Visualisations",
+    description:
+      "\"From Lab to Life\" — making interactive 3D heart models publicly accessible for education and outreach, built for client Stephen Creamer with a six-person capstone team (COMPSCI 399). Currently building out the backend and extending the model to cover arteries and overall cardiac function alongside the existing visualisation layer, after the project proposal, risk assessment and tech stack recommendation.",
+    tech: ["Next.js", "TypeScript", "React", "React Three Fiber"],
+    meta: "Capstone · In progress",
+  },
   {
     title: "CalorieDuo",
     description:
@@ -127,6 +102,7 @@ export const projects: Project[] = [
     description:
       "Built executive collections in Payload CMS so committee data could be managed as structured content, and turned Figma designs into reusable responsive event cards. Delivered in Agile sprints with the wider team.",
     tech: ["React", "Next.js", "Tailwind CSS", "Payload CMS"],
+    live: "https://uoavc.wdcc.co.nz/",
   },
   {
     title: "Mendo Construction Web App",
